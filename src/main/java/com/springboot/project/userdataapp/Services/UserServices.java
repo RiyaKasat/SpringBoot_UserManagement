@@ -4,33 +4,47 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.springboot.project.userdataapp.DAO.UserRepository;
 import com.springboot.project.userdataapp.Entities.User;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+
 @Component
 public class UserServices {
-    private static List<User> list=new ArrayList<User>();
+
+    @Autowired
+    private UserRepository userRepository;
+    
 
 
     public List<User> getAllUsers(){
-        return list;
+       List<User> list= (List) this.userRepository.findAll();
+       return list;
     }
 
-    public User getUserById(int id)
+    public User getUserByEmail(String email)
     {
         User user=null;
-        user= list.stream().filter(e -> e.getId() == id).findFirst().get();
+        try{
+          //user= list.stream().filter(e -> e.getId() == id).findFirst().get();
+         user=  this.userRepository.findByUsername(email);
+        }
+       catch(Exception e)
+       {
+         e.printStackTrace();
+       }
         return user;
     }
 
     public User addUser(User u)
     {
-      list.add(u);
-      return u;
+      // list.add(u);
+      // return u;
+      
+      User res= userRepository.save(u);
+      return res;
     }
 
-    public void deleteUser(int userId)
-    {
-      list.stream().filter(user ->user.getId()!=userId).collect(Collectors.toList());
-    }
+    
 }

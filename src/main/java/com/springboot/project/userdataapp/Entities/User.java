@@ -9,23 +9,29 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table(name="Users")
-public class User {
+import com.fasterxml.jackson.annotation.JsonIgnore;
+  
+@Entity @Table(name="Users")
+public class User 
+{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="user_id")
     private int id;
-    private String name,place;
-    private Date date;
+    private String name, place, dob;
+    private String username, password;
+    
 
 
-    public User(int id, String name, String place, Date date) {
+    public User(int id, String name, String place, String dob, String username, String password) {
         this.id = id;
         this.name = name;
         this.place = place;
-        this.date = date;
+        this.dob=dob;
+        this.username=username;
+        this.password=password;
+        
     }
 
     public User() {
@@ -39,6 +45,25 @@ public class User {
     public void setId(int id) {
         this.id = id;
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+
+    @JsonIgnore
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
 
     public String getName() {
         return name;
@@ -56,21 +81,25 @@ public class User {
         this.place = place;
     }
 
-    public Date getDate() {
-        return date;
+    public String getDate() {
+        return dob;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDate(String dob) {
+        this.dob = dob;
     }
 
-    @Override
-    public String toString() {
-        return "User [date=" + date + ", id=" + id + ", name=" + name + ", place=" + place + "]";
-    }
+  
 
-    
-    
+	
 
+	
+
+
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", place=" + place + "]";
+	}
 
 }
