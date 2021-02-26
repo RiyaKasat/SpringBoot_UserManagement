@@ -1,23 +1,28 @@
 package com.springboot.project.userdataapp.Entities;
 
 public class Login {
-    String username;
-    String password;
+    String email;
+    String pass;
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
-        return password;
+        return pass;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword(String pass) {
+        this.pass = pass;
+    }
+
+    public Login(String email, String pass) {
+        this.email = email;
+        this.pass = pass;
     }
     
 }
