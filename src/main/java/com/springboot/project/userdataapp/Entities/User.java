@@ -6,23 +6,13 @@ import java.util.List;
 import java.text.SimpleDateFormat;
 
 import java.text.ParseException;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
-
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.lang.NonNull;
 
 @Entity
@@ -47,12 +37,6 @@ public class User {
     String p;
     // private String pass;
 
-    
-    
-
-    
-
-
     public User( String name, String place, String dob, String email, String p) {
        
         this.name = name;
@@ -67,10 +51,6 @@ public class User {
     public User() {
     }
 
-    
-   
-
-    
     public String getP()
     {
         return p;
@@ -89,18 +69,6 @@ public class User {
     }
 
 
-    
-    
-    
-    // public String getPassword() {
-    //     return pass;
-    // }
-
-    // public void setPassword(String pass) {
-    //     this.pass = pass;
-    // }
-
-
     public String getName() {
         return name;
     }
@@ -117,17 +85,8 @@ public class User {
         this.place = place;
     }
 
-   
-    // private Set<Items> items;
-    // @OneToMany(targetEntity = LoginHistory.class, cascade = CascadeType.ALL)
-    // @JoinColumn(name="fk", referencedColumnName = "email")
     @OneToMany(mappedBy = "user")
     List<LoginHistory> login_list=new ArrayList<LoginHistory>();
-
-    // public List<LoginHistory> getLoginArray()
-    // {
-    //     return login_list;
-    // }
 
     public String getDate() {
         SimpleDateFormat format1 = new SimpleDateFormat("yyyy-mm-dd");
@@ -138,13 +97,13 @@ public class User {
         String temp = format2.format(date);
         return temp;
     }
- catch (ParseException e) {
+    catch (ParseException e) {
    
     e.printStackTrace();
     return "A";
     
+   }
 }
-    }
 
 
 

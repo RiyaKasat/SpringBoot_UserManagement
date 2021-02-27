@@ -82,6 +82,7 @@ public class UserServices {
 
    public User addUser(User u)
     {
+      //For bcrypting password
       // String encodepassword= this.passwordEncoder.encode(u.getP());
       // u.setP(encodepassword);
       User res= userRepository.save(u);
