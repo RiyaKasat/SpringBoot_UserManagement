@@ -10,3 +10,5 @@ technologies to create RestAPI for registration and login of a user. It also che
 won't add user in database. It also stores the login history of the user.
 
 Following Screenshots shows the execution of API using PostMan.
+![LoginHistory](https://user-images.githubusercontent.com/50027521/109393498-1319db80-7948-11eb-96c7-cf9ecf648150.PNG)
+![user](https://user-images.githubusercontent.com/50027521/109393501-14e39f00-7948-11eb-8179-535d58254390.PNG)
