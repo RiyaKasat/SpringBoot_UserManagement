@@ -15,5 +15,9 @@ Following Screenshots shows the execution of API using PostMan.
 ![user](https://user-images.githubusercontent.com/50027521/109393501-14e39f00-7948-11eb-8179-535d58254390.PNG)
 
 If user is not in database and attempts to login it gives error message as user does not exists.
+![InvalidLogin](https://user-images.githubusercontent.com/50027521/109393586-a2bf8a00-7948-11eb-93d9-f4ec071e3e4c.PNG)
+
+
+Same is for password mismatched.
 
 
