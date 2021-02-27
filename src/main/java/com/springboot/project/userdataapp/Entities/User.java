@@ -1,45 +1,60 @@
 package com.springboot.project.userdataapp.Entities;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.text.SimpleDateFormat;
-
 
 import java.text.ParseException;
 
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
-  
-  
-@Entity @Table(name="Users")
-public class User 
-{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="user_id")
-    private int id;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.lang.NonNull;
+
+@Entity
+@Table(name = "Users")
+public class User {
+
+   
+   
+    @NonNull
     private String name, place;
 
-    @JsonFormat(pattern = "yyyy-MM-dd", shape= Shape.STRING)
-    @Column(name="BirthDate")
+    @JsonFormat(pattern = "yyyy-MM-dd", shape = Shape.STRING)
+    @Column(name = "BirthDate")
+    @NonNull
     private String dob;
+
+    @Id
+    @NonNull
     private String email;
+
+    @NonNull
     String p;
     // private String pass;
+
+    
+    
+
     
 
 
-    public User(int id, String name, String place, String dob, String email, String p) {
-        this.id = id;
+    public User( String name, String place, String dob, String email, String p) {
+       
         this.name = name;
         this.place = place;
         this.dob=dob;
@@ -53,14 +68,9 @@ public class User
     }
 
     
-    public int getId() {
-        return id;
-    }
+   
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
+    
     public String getP()
     {
         return p;
@@ -108,6 +118,16 @@ public class User
     }
 
    
+    // private Set<Items> items;
+    // @OneToMany(targetEntity = LoginHistory.class, cascade = CascadeType.ALL)
+    // @JoinColumn(name="fk", referencedColumnName = "email")
+    @OneToMany(mappedBy = "user")
+    List<LoginHistory> login_list=new ArrayList<LoginHistory>();
+
+    // public List<LoginHistory> getLoginArray()
+    // {
+    //     return login_list;
+    // }
 
     public String getDate() {
         SimpleDateFormat format1 = new SimpleDateFormat("yyyy-mm-dd");
@@ -134,7 +154,7 @@ public class User
 
 	@Override
 	public String toString() {
-		return "User [dob=" + dob + ", id=" + id + ", name=" + name + ", password=" +p+", place=" + place
+		return "User [dob=" + dob + ", id="  + ", name=" + name + ", password=" +p+", place=" + place
 				+ ", email=" +email + "]";
 	}
 

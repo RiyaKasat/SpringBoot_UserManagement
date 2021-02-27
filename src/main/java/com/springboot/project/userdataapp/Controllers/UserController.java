@@ -1,10 +1,10 @@
 package com.springboot.project.userdataapp.Controllers;
 
-import java.util.List;
 import java.util.Optional;
 
 import com.springboot.project.userdataapp.API.APIResponse;
 import com.springboot.project.userdataapp.Entities.Login;
+import com.springboot.project.userdataapp.Entities.LoginHistory;
 import com.springboot.project.userdataapp.Entities.User;
 import com.springboot.project.userdataapp.Services.UserServices;
 
@@ -22,7 +22,7 @@ public class UserController {
 
   @Autowired
   private UserServices userServices;
-  private List<User> list;
+ 
 
   // @GetMapping(value="/Users")
   // public ResponseEntity<List<User>> getUsers()
@@ -70,8 +70,14 @@ public class UserController {
   @PostMapping(value ="/Login1/")
   public APIResponse UserLogin(@RequestBody Login login)
       {
-        return userServices.loginUser(login);
-       }
+        APIResponse a1= userServices.loginUser(login);
+        User u= (User) a1.getResult();
+        u.setP("");
+        a1.setResult(u);
+        return a1;
+      }
+
+  
 
   
  }
